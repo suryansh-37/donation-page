@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temple Donation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa; /* Light grey background */
+            color: #333; /* Dark grey text */
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background-color: #fff;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-logo img {
+            height: 30px;
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: #007bff; /* Google Blue */
+        }
+
+        .nav-links li a.active {
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(to right, #e9ecef, #f8f9fa); /* Light gradient */
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: #212529; /* Darker grey */
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .hero .donate-button {
+            display: inline-block;
+            background-color: #007bff; /* Google Blue */
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .hero .donate-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Donation Summary */
+        .summary {
+            background-color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .summary h2 {
+            color: #212529;
+            margin-bottom: 15px;
+        }
+
+        .summary p {
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .summary progress {
+            width: 80%;
+            height: 10px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-color: #eee;
+            color: #28a745; /* Green progress color */
+            border-radius: 5px;
+        }
+
+        .summary progress::-webkit-progress-bar {
+            background-color: #eee;
+            border-radius: 5px;
+        }
+
+        .summary progress::-webkit-progress-value {
+            background-color: #28a745;
+            border-radius: 5px;
+        }
+
+        .summary progress::-moz-progress-bar {
+            background-color: #28a745;
+            border-radius: 5px;
+        }
+
+        /* Donation Cards */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 30px 20px;
+            background-color: #f8f9fa;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 6px;
+            max-height: 180px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: #212529;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .card .price {
+            font-size: 1.2rem;
+            color: #007bff;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .card .quantity {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .card .quantity button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .card .quantity button:hover {
+            background-color: #0056b3;
+        }
+
+        .card .quantity span {
+            font-size: 1.1rem;
+            color: #333;
+            font-weight: bold;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        /* Image Gallery */
+        .gallery-section {
+            padding: 40px 20px;
+            background-color: #fff;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+
+        .gallery-section h2 {
+            color: #212529;
+            margin-bottom: 20px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            border-radius: 8px;
+            height: 200px;
+            object-fit: cover;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-links li a {
+                font-size: 0.9rem;
+            }
+
+            .hero {
+                padding: 60px 20px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="navbar-logo">
+                <img src="htm\logo-01-Photoroom.png" alt="Temple Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Campaign</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+
+        <header class="hero">
+            <h1>ॐ नमः शिवाय शिवलिंग हेतु <br> सहयोग करें श्री टीम</h1>
+            <p>Support our sacred mission to build the Shivling Temple</p>
+            <a href="#" class="donate-button">Donate Now</a>
+        </header>
+
+        <section class="summary">
+            <h2>Donation Progress</h2>
+            <p>₹1,32,000 raised out of ₹2,50,000</p>
+            <progress value="132000" max="250000"></progress>
+            <p>23 days left • 431 backers</p>
+        </section>
+
+        <section class="cards">
+            <div class="card">
+                <img src="https://5.imimg.com/data5/SELLER/Default/2021/5/UD/HD/EM/8787899/red-clay-bricks-250x250.jpg" alt="Bricks">
+                <h3>1. ईंटें | Bricks</h3>
+                <p>200 Bricks for Temple Renovation</p>
+                <div class="price">₹1600</div>
+                <div class="quantity">
+                    <button onclick="updateQuantity(this, -1)">-</button>
+                    <span>0</span>
+                    <button onclick="updateQuantity(this, 1)">+</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://5.imimg.com/data5/SELLER/Default/2023/3/296376806/UB/ZG/BE/17999344/ultratech-cement-500x500.jpg" alt="Cement">
+                <h3>2. सीमेंट | Cement</h3>
+                <p>Cement Bag for Temple Construction</p>
+                <div class="price">₹390</div>
+                <div class="quantity">
+                    <button onclick="updateQuantity(this, -1)">-</button>
+                    <span>0</span>
+                    <button onclick="updateQuantity(this, 1)">+</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://5.imimg.com/data5/SELLER/Default/2022/11/SZ/LN/GM/144014830/black-granite-stone-tiles-500x500.jpg" alt="Stone">
+                <h3>3. काला पत्थर | Black Stone</h3>
+                <p>Black Stone for Base Foundation</p>
+                <div class="price">₹1190</div>
+                <div class="quantity">
+                    <button onclick="updateQuantity(this, -1)">-</button>
+                    <span>0</span>
+                    <button onclick="updateQuantity(this, 1)">+</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery-section">
+            <h2>कार्य प्रगति की झलकियाँ | Glimpses of Progress</h2>
+            <div class="gallery">
+                <img src="htm\image.jpg" alt="Progress 2">
+                <img src="htm\image.jpg" alt="Progress 1">
+                <img src="htm\image.jpg" alt="Progress 3">
+                <img src="htm\image.jpg" alt="Progress 4">
+                <img src="htm\image.jpg" alt="Progress 5">
+                <img src="htm\image.jpg" alt="Progress 6">
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function updateQuantity(button, delta) {
+            const span = button.parentElement.querySelector('span');
+            let current = parseInt(span.textContent);
+            current = Math.max(0, current + delta);
+            span.textContent = current;
+        }
+    </script>
+</body>
+
+</html>
