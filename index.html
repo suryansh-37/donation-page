@@ -1,669 +1,685 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shiva Temple Donation</title>
-    <script src="script.js" defer></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f8e0; /* Light greenish background, more calming */
-            color: #333;
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            overflow-x: hidden; /* Prevent horizontal scrollbar */
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shivling Mandir Mission - Donate & Support</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    /* Basic Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            flex: 1;
-        }
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9;
+      color: #222;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      scroll-behavior: smooth;
+    }
 
-        .navbar {
-            background-color: #ffffff;
-            color: #222;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 18px 24px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+    /* HEADER / NAVIGATION */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255 255 255 / 0.6);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 1px 8px rgb(0 0 0 / 0.1);
+      z-index: 1000;
+    }
 
-        .navbar .logo img {
-            height: 50px;
-        }
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1rem;
+    }
 
-        .nav-links {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            gap: 25px;
-        }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.25rem;
+    }
 
-        .nav-links li a {
-            text-decoration: none;
-            color: #555;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            padding: 10px 16px;
-            border-radius: 24px;
-        }
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      position: relative;
+      padding: 4px 0;
+    }
 
-        .nav-links li a:hover {
-            color: #007bff;
-            background-color: rgba(0, 123, 255, 0.05);
-        }
+    .nav-links a.active,
+    .nav-links a:hover {
+      color: #d84315;
+      font-weight: 700;
+    }
 
-        .nav-links li a.active {
-            color: #007bff;
-            border-bottom: 2px solid #007bff;
-            padding-bottom: 5px;
-        }
+    /* Hamburger menu for mobile */
+    .toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #333;
+    }
 
-        .toggle {
-            display: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: #555;
-        }
+    /* Mobile nav show/hide */
+    .nav-links.show {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(255 255 255 / 0.95);
+      border-top: 1px solid #ddd;
+      padding: 1rem 0;
+    }
 
-        .hero {
-            padding: 120px 0;
-            text-align: center;
-            /*background-image: linear-gradient(to right, #e0f7fa, #b2ebf2);  Light blue gradient removed */
-            background-color: #f0f8e0;
-            color: #222;
-            border-radius: 8px;
-            margin-bottom: 40px;
-        }
+    .nav-links.show a {
+      padding: 0.5rem 1rem;
+    }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 24px;
-            letter-spacing: -0.02em;
-            color: #4caf50; /* Green, associated with Shiva */
-        }
+    /* MAIN CONTENT */
+    main {
+      padding: 5.5rem 1rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex-grow: 1;
+    }
 
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 30px;
-            opacity: 0.8;
-            max-width: 80%;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.7;
-        }
+    /* HOME SECTION */
+    #home-section {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-top: 1rem;
+    }
 
-        .hero .donate-button {
-            display: inline-block;
-            background-color: #ff7043;  /* A warmer orange/red, like Agni */
-            color: white;
-            padding: 18px 36px;
-            text-decoration: none;
-            border-radius: 24px;
-            font-weight: 500;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            font-size: 1.1rem;
-        }
+    .om-symbol {
+      font-size: 4rem;
+      margin-bottom: 0.5rem;
+      color: #d84315;
+      user-select: none;
+    }
 
-        .hero .donate-button:hover {
-            background-color: #d84315;  /* Darker shade on hover */
-            transform: scale(1.05);
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
-        }
+    #home-section h1 {
+      font-size: 2.75rem;
+      margin-bottom: 0.5rem;
+      color: #d84315;
+      font-weight: 700;
+    }
 
-        .summary {
-            text-align: center;
-            padding: 40px;
-            background: #f1f3f4;
-            border-radius: 8px;
-            margin-bottom: 40px;
-        }
+    #home-section p {
+      font-size: 1.25rem;
+      color: #444;
+    }
 
-        .summary h2 {
-            color: #222;
-            margin-bottom: 20px;
-            font-size: 2.5rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-        }
+    /* CARDS SECTION */
+    #donation-section {
+      margin-bottom: 3rem;
+    }
 
-        .summary p {
-            color: #555;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-            line-height: 1.7;
-            opacity: 0.8;
-        }
+    #donation-section h2 {
+      font-size: 2rem;
+      color: #d84315;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      text-align: center;
+    }
 
-        .summary progress {
-            width: 90%;
-            height: 12px;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            background-color: #e0e0e0;
-            color: #4caf50;
-            border-radius: 6px;
-            margin-bottom: 15px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
 
-        .summary progress::-webkit-progress-bar {
-            background-color: #e0e0e0;
-            border-radius: 6px;
-        }
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 3px 8px rgb(0 0 0 / 0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.3s ease;
+    }
 
-        .summary progress::-webkit-progress-value {
-            background-color: #4caf50;
-            border-radius: 6px;
-            transition: width 0.5s ease;
-        }
+    .card:hover {
+      box-shadow: 0 6px 14px rgb(0 0 0 / 0.15);
+    }
 
-        .summary progress::-moz-progress-bar {
-            background-color: #4caf50;
-            border-radius: 6px;
-            transition: width 0.5s ease;
-        }
+    .card.special {
+      border: 3px solid #d84315;
+      box-shadow: 0 0 15px #d84315aa;
+      position: relative;
+    }
 
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-            padding: 20px;
-            margin-bottom: 40px;
-        }
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      user-select: none;
+    }
 
-        .card {
-            background: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            padding: 24px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            overflow: visible;
-        }
+    .card-content {
+      padding: 1rem 1.25rem 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
 
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-        }
+    .card-content h3 {
+      margin-bottom: 0.5rem;
+      color: #d84315;
+      font-weight: 700;
+      font-size: 1.3rem;
+    }
 
-        .card img {
-            width: 100%;
-            border-radius: 8px;
-            max-height: 240px;
-            object-fit: cover;
-            margin-bottom: 20px;
-            transition: border-radius 0.3s ease;
-        }
+    .card-content p {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
 
-        .card img:hover {
-            border-radius: 4px;
-        }
+    /* Quantity controls */
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
 
-        .card h3 {
-            color: #222;
-            margin-bottom: 12px;
-            font-size: 1.8rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-        }
+    .quantity-controls button {
+      background-color: #d84315;
+      border: none;
+      color: white;
+      font-size: 1.25rem;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease;
+    }
 
-        .card p {
-            color: #555;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-            line-height: 1.7;
-            opacity: 0.8;
-        }
+    .quantity-controls button:disabled {
+      background-color: #bbb;
+      cursor: not-allowed;
+    }
 
-        .card .price {
-            font-size: 28px;
-            color: #222;
-            font-weight: 700;
-            margin-bottom: 20px;
-            cursor: pointer;
-            transition: color 0.2s ease;
-        }
+    .quantity-controls button:hover:not(:disabled) {
+      background-color: #b13612;
+    }
 
-        .card .price:hover {
-            color: #007bff;
-        }
+    .qty-value {
+      font-size: 1.25rem;
+      font-weight: 600;
+      min-width: 28px;
+      text-align: center;
+      user-select: none;
+    }
 
-        .card .quantity {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
+    /* Donate button inside card */
+    .donate-btn {
+      background-color: #d84315;
+      border: none;
+      color: white;
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s ease;
+      display: none; /* hidden by default */
+      align-self: center;
+      min-width: 150px;
+    }
 
-        .card .quantity button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            border-radius: 24px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        }
+    .donate-btn:hover {
+      background-color: #b13612;
+    }
 
-        .card .quantity button:hover {
-            background-color: #0056b3;
-            transform: scale(1.05);
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-        }
+    /* WORK PROGRESS SECTION */
+    #work-progress-section {
+      margin-bottom: 3rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-        .card .quantity span {
-            font-size: 1.5rem;
-            color: #222;
-            font-weight: 600;
-            min-width: 40px;
-            text-align: center;
-        }
+    #work-progress-section h2 {
+      font-size: 2rem;
+      color: #d84315;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-weight: 700;
+    }
 
-        .gallery-section {
-            padding: 60px 20px;
-            background-color: #f8f9fa;
-            text-align: center;
-            border-top: 1px solid #eee;
-            border-bottom: 1px solid #eee;
-            margin-bottom: 40px;
-        }
+    .progress-group {
+      margin-bottom: 1.25rem;
+    }
 
-        .gallery-section h2 {
-            color: #222;
-            margin-bottom: 30px;
-            font-size: 2.5rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-        }
+    .progress-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      color: #444;
+    }
 
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            max-height: 840px;
-            overflow-y: auto;
-            padding: 0 10px;
-        }
+    progress {
+      width: 100%;
+      height: 20px;
+      appearance: none;
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: #eee;
+    }
 
-        .gallery img {
-            width: 100%;
-            border-radius: 8px;
-            height: 280px;
-            object-fit: cover;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, border-radius 0.3s ease;
-        }
+    progress::-webkit-progress-bar {
+      background-color: #eee;
+      border-radius: 10px;
+    }
 
-        .gallery img:hover {
-            transform: scale(1.04);
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
-            border-radius: 4px;
-        }
+    progress::-webkit-progress-value {
+      background-color: #d84315;
+      border-radius: 10px;
+      transition: width 0.3s ease;
+    }
 
-        @media (max-width: 768px) {
-            .nav-links {
-                flex-direction: column;
-                display: none;
-                background: #ffffff;
-                width: 100%;
-                position: absolute;
-                top: 80px;
-                left: 0;
-                border-radius: 8px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                padding: 10px 0;
-            }
+    /* ABOUT SECTION */
+    #about-section {
+      background-color: #fff;
+      padding: 2rem 1rem;
+      border-radius: 12px;
+      box-shadow: 0 3px 8px rgb(0 0 0 / 0.1);
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      text-align: center;
+    }
 
-            .nav-links li {
-                text-align: center;
-                padding: 16px 0;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            }
+    #about-section h2 {
+      font-size: 2rem;
+      color:
+    #d84315;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    }
 
-            .nav-links li:last-child {
-                border-bottom: none;
-            }
 
-            .nav-links li a {
-                display: block;
-                width: 100%;
-                padding: 16px 0;
-            }
+#about-section p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #333;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-            .toggle {
-                display: block;
-                padding: 12px;
-                border-radius: 24px;
-                background-color: rgba(0, 123, 255, 0.05);
-                color: #555;
-            }
+/* FOOTER */
+footer {
+  background-color: #222;
+  color: #eee;
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  user-select: none;
+}
 
-            .hero {
-                padding: 100px 20px;
-            }
+/* FLOATING DONATE BUTTON */
+#floating-donate-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background-color: #d84315;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgb(216 67 21 / 0.7);
+  transition: background-color 0.3s ease;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  user-select: none;
+}
 
-            .hero h1 {
-                font-size: 2.8rem;
-            }
+#floating-donate-btn:hover {
+  background-color: #b13612;
+}
 
-            .cards {
-                grid-template-columns: 1fr;
-            }
+#floating-donate-btn i {
+  font-size: 1.2rem;
+}
 
-            .gallery {
-                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-                max-height: none;
-                overflow-y: scroll;
-            }
-            .navbar .logo img{
-                height: 40px;
-            }
-            .navbar {
-                padding: 12px 16px;
-            }
-        }
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
 
-        .card .quantity-text {
-            position: absolute;
-            top: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #ff9800;
-            color: #ffffff;
-            padding: 8px 16px;
-            border-radius: 12px;
-            font-weight: 500;
-            font-size: 0.9rem;
-            opacity: 0;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            white-space: nowrap;
-            z-index: 10;
-        }
+  .toggle {
+    display: block;
+  }
 
-        .card:hover .quantity-text{
-            opacity: 1;
-            transform: translateX(-50%) translateY(0px);
-        }
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+</style> </head> <body> <header> <nav role="navigation" aria-label="Primary Navigation"> <a href="#home-section" class="logo" aria-label="Go to Home" style="font-weight:bold; font-size:1.5rem; color:#d84315;">Shivling Mandir</a> <button class="toggle" aria-expanded="false" aria-controls="primary-menu" aria-label="Toggle menu"> <i class="fas fa-bars"></i> </button> <ul id="primary-menu" class="nav-links"> <li><a href="#home-section" class="active">Home</a></li> <li><a href="#donation-section">Donate</a></li> <li><a href="#work-progress-section">Work Progress</a></li> <li><a href="#about-section">About</a></li> <li><a href="#footer-section">Contact</a></li> </ul> </nav> </header> <main> <!-- HOME / INTRO --> <section id="home-section" tabindex="-1" aria-label="Home Section"> <div class="om-symbol" aria-hidden="true">🕉️</div> <h1>Shivling Mandir Construction Mission</h1> <p>Join us in building 1.25 lakh Shivlingas to promote peace and spirituality.</p> </section>
+php-template
+Copy
+Edit
+<!-- DONATION CARDS -->
+<section id="donation-section" aria-labelledby="donation-heading">
+  <h2 id="donation-heading">Donate Materials & Support</h2>
+  <div class="cards" role="list">
+    <!-- Shivling (Special) -->
+    <article class="card special" role="listitem" aria-label="Shivling donation card">
+      <img src="https://i.imgur.com/7TXbqDh.jpg" alt="Shivling Image" />
+      <div class="card-content">
+        <h3>Shivling</h3>
+        <p>Donate one or more Shivlings to support the mission.</p>
+        <div class="quantity-controls" aria-label="Adjust quantity for Shivling">
+          <button aria-label="Decrease quantity" class="minus-btn" disabled>-</button>
+          <span class="qty-value" aria-live="polite" aria-atomic="true">0</span>
+          <button aria-label="Increase quantity" class="plus-btn">+</button>
+        </div>
+        <button class="donate-btn" aria-label="Donate Shivling(s)">Donate</button>
+      </div>
+    </article>
 
-        .footer {
-            background-color: #f1f3f4;
-            color: #555;
-            padding: 40px 20px;
-            text-align: center;
-            margin-top: 40px;
-            border-top: 1px solid #e0e0e0;
-        }
+    <!-- Brick -->
+    <article class="card" role="listitem" aria-label="Brick donation card">
+      <img src="https://i.imgur.com/XRGSo7H.jpg" alt="Brick Image" />
+      <div class="card-content">
+        <h3>Bricks</h3>
+        <p>Help build strong foundations by donating bricks.</p>
+        <div class="quantity-controls" aria-label="Adjust quantity for Brick">
+          <button aria-label="Decrease quantity" class="minus-btn" disabled>-</button>
+          <span class="qty-value" aria-live="polite" aria-atomic="true">0</span>
+          <button aria-label="Increase quantity" class="plus-btn">+</button>
+        </div>
+        <button class="donate-btn" aria-label="Donate Brick(s)">Donate</button>
+      </div>
+    </article>
 
-        .footer-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            max-width: 1200px;
-            margin: 0 auto;
-            gap: 30px;
-        }
+    <!-- Cement -->
+    <article class="card" role="listitem" aria-label="Cement donation card">
+      <img src="https://i.imgur.com/6TCO8Kd.jpg" alt="Cement Bags Image" />
+      <div class="card-content">
+        <h3>Cement</h3>
+        <p>Contribute cement bags for durable construction.</p>
+        <div class="quantity-controls" aria-label="Adjust quantity for Cement">
+          <button aria-label="Decrease quantity" class="minus-btn" disabled>-</button>
+          <span class="qty-value" aria-live="polite" aria-atomic="true">0</span>
+          <button aria-label="Increase quantity" class="plus-btn">+</button>
+        </div>
+        <button class="donate-btn" aria-label="Donate Cement Bags">Donate</button>
+      </div>
+    </article>
 
-        .footer-section {
-            flex: 1 1 250px;
-            text-align: left;
-        }
+    <!-- Black Stone -->
+    <article class="card" role="listitem" aria-label="Black Stone donation card">
+      <img src="https://i.imgur.com/4P0T8xJ.jpg" alt="Black Stone Image" />
+      <div class="card-content">
+        <h3>Black Stone</h3>
+        <p>Donate black stone for temple decoration and flooring.</p>
+        <div class="quantity-controls" aria-label="Adjust quantity for Black Stone">
+          <button aria-label="Decrease quantity" class="minus-btn" disabled>-</button>
+          <span class="qty-value" aria-live="polite" aria-atomic="true">0</span>
+          <button aria-label="Increase quantity" class="plus-btn">+</button>
+        </div>
+        <button class="donate-btn" aria-label="Donate Black Stone">Donate</button>
+      </div>
+    </article>
+  </div>
+</section>
 
-        .footer-section h3 {
-            color: #222;
-            margin-bottom: 20px;
-            font-size: 1.4rem;
-            font-weight: 600;
-        }
+<!-- WORK PROGRESS SECTION -->
+<section id="work-progress-section" aria-labelledby="work-progress-heading">
+  <h2 id="work-progress-heading">Work Progress</h2>
+  <div class="progress-group">
+    <label for="progress-shivling">Shivling Installation</label>
+    <progress id="progress-shivling" value="45" max="100">45%</progress>
+  </div>
+  <div class="progress-group">
+    <label for="progress-bricks">Brickwork</label>
+    <progress id="progress-bricks" value="30" max="100">30%</progress>
+  </div>
+  <div class="progress-group">
+    <label for="progress-cement">Cement Application</label>
+    <progress id="progress-cement" value="25" max="100">25%</progress>
+  </div>
+  <div class="progress-group">
+    <label for="progress-stone">Black Stone Laying</label>
+    <progress id="progress-stone" value="10" max="100">10%</progress>
+  </div>
+</section>
 
-        .footer-section ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+<!-- ABOUT SECTION -->
+<section id="about-section" aria-labelledby="about-heading">
+  <h2 id="about-heading">About the Mission</h2>
+  <p>
+    Our mission is to build a grand Shivling Mandir containing 1.25 lakh Shivlings across 10 acres of land.
+    This spiritual initiative aims to foster peace, harmony, and devotion among communities. Your donations of materials and support
+    help bring this divine vision to life.
+  </p>
+</section>
+<style>
 
-        .footer-section ul li {
-            margin-bottom: 12px;
-            line-height: 1.7;
-        }
-
-        .footer-section a {
-            text-decoration: none;
-            color: #555;
-            transition: color 0.3s ease;
-        }
-
-        .footer-section a:hover {
-            color: #007bff;
-        }
-
-        .footer-bottom {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #e0e0e0;
-            text-align: center;
-            color: #777;
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .footer-section {
-                text-align: center;
-            }
-        }
-
-        /* Keyframe for the animated Om symbol */
-        @keyframes rotateOm {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .om-symbol {
-            font-family: 'Roboto', sans-serif;  /* Ensure a font that supports the Om symbol */
-            font-size: 4em;      /* Larger size */
-            color: #ff9800;       /* Orange color */
-            animation: rotateOm 5s linear infinite; /* 5 seconds, linear, infinite rotation */
-            display: inline-block;  /* Allows the animation to work */
-            margin-bottom: 20px;
-        }
-
-    </style>
-</head>
+</style>
 <body>
-    <nav class="navbar">
-        <div class="logo">
-            <img src="logo-01-Photoroom.png" alt="Logo">
-        </div>
-        <div class="toggle" id="nav-toggle"><i class="fas fa-bars"></i></div>
-        <ul class="nav-links" id="nav-menu">
-            <li><a href="#" class="active">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Campaign</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
+  <header>
+    <nav role="navigation" aria-label="Primary Navigation">
+      <a href="#home-section" class="logo" aria-label="Go to Home" style="font-weight:bold; font-size:1.5rem; color:#d84315;">
+        Shivling Mandir</a>
+      <button class="toggle" aria-expanded="false" aria-controls="primary-menu" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul id="primary-menu" class="nav-links">
+        <li><a href="#home-section" class="active">Home</a></li>
+        <li><a href="#donation-section">Donate</a></li>
+        <li><a href="#work-progress-section">Work Progress</a></li>
+        <li><a href="#about-section">About</a></li>
+        <li><a href="#footer-section">Contact</a></li>
+      </ul>
     </nav>
-
-    <header class="hero">
-        <div class="om-symbol">ॐ</div>
-        <h1>ॐ नमः शिवाय शिवलिंग हेतु <br> सहयोग करें श्री टीम</h1>
-        <p>Support our sacred mission to build the Shivling Temple</p>
-        <a href="#" class="donate-button">Donate Now</a>
-    </header>
-
-    <section class="summary">
-        <h2>Donation Progress</h2>
-        <p>₹1,32,000 raised out of ₹2,50,000</p>
-        <progress value="132000" max="250000"></progress>
-        <p>23 days left • 431 backers</p>
+  </header>
+  <main>
+    <section id="home-section" tabindex="-1" aria-label="Home Section">
+      <div class="om-symbol" aria-hidden="true">🕉️</div>
+      <h1>Shivling Mandir Construction Mission</h1>
+      <p>Join us in building 1.25 lakh Shivlingas to promote peace and spirituality.</p>
     </section>
-
-    <section class="cards">
-        <div class="card">
-            <img src="download.jpg" alt="Bricks">
-            <h3>1. ईंटें | Bricks</h3>
-            <p>200 Bricks for Temple Renovation</p>
-            <div class="price">₹1600</div>
-            <div class="quantity">
-                <button class="minus-btn">-</button>
-                <span class="quantity-value">0</span>
-                <button class="plus-btn">+</button>
-            </div>
-            <div class="quantity-text">Total: ₹<span class="total-price">0</span></div>
+    <!-- DONATION CARDS -->
+<section id="donation-section" aria-labelledby="donation-heading">
+  <h2 id="donation-heading">Donate Materials & Support</h2>
+  <div class="cards" role="list">
+    <!-- Shivling (Special) -->
+    <article class="card special" role="listitem" aria-label="Shivling donation card">
+      <img src="https://i.imgur.com/7TXbqDh.jpg" alt="Shivling Image" />
+      <div class="card-content">
+        <h3>Shivling</h3>
+        <p>Donate one or more Shivlings to support the mission.</p>
+        <div class="quantity-controls" aria-label="Adjust quantity for Shivling">
+          <button aria-label="Decrease quantity" class="minus-btn" disabled>-</button>
+          <span class="qty-value" aria-live="polite" aria-atomic="true">0</span>
+          <button aria-label="Increase quantity" class="plus-btn">+</button>
         </div>
-        <div class="card">
-            <img src="download.jpg" alt="Cement">
-            <h3>2. सीमेंट | Cement</h3>
-            <p>Cement Bag for Temple Construction</p>
-            <div class="price">₹390</div>
-            <div class="quantity">
-                <button class="minus-btn">-</button>
-                <span class="quantity-value">0</span>
-                <button class="plus-btn">+</button>
-            </div>
-            <div class="quantity-text">Total: ₹<span class="total-price">0</span></div>
+        <button class="donate-btn" aria-label="Donate Shivling(s)">Donate</button>
+      </div>
+    </article>
+
+    <!-- Brick -->
+    <article class="card" role="listitem" aria-label="Brick donation card">
+      <img src="https://i.imgur.com/XRGSo7H.jpg" alt="Brick Image" />
+      <div class="card-content">
+        <h3>Bricks</h3>
+        <p>Help build strong foundations by donating bricks.</p>
+        <div class="quantity-controls" aria-label="Adjust quantity for Brick">
+          <button aria-label="Decrease quantity" class="minus-btn" disabled>-</button>
+          <span class="qty-value" aria-live="polite" aria-atomic="true">0</span>
+          <button aria-label="Increase quantity" class="plus-btn">+</button>
         </div>
-        <div class="card">
-            <img src="download.jpg" alt="Stone">
-            <h3>3. काला पत्थर | Black Stone</h3>
-            <p>Black Stone for Base Foundation</p>
-            <div class="price">₹1190</div>
-            <div class="quantity">
-                <button class="minus-btn">-</button>
-                <span class="quantity-value">0</span>
-                <button class="plus-btn">+</button>
-            </div>
-            <div class="quantity-text">Total: ₹<span class="total-price">0</span></div>
+        <button class="donate-btn" aria-label="Donate Brick(s)">Donate</button>
+      </div>
+    </article>
+
+    <!-- Cement -->
+    <article class="card" role="listitem" aria-label="Cement donation card">
+      <img src="https://i.imgur.com/6TCO8Kd.jpg" alt="Cement Bags Image" />
+      <div class="card-content">
+        <h3>Cement</h3>
+        <p>Contribute cement bags for durable construction.</p>
+        <div class="quantity-controls" aria-label="Adjust quantity for Cement">
+          <button aria-label="Decrease quantity" class="minus-btn" disabled>-</button>
+          <span class="qty-value" aria-live="polite" aria-atomic="true">0</span>
+          <button aria-label="Increase quantity" class="plus-btn">+</button>
         </div>
-    </section>
+        <button class="donate-btn" aria-label="Donate Cement Bags">Donate</button>
+      </div>
+    </article>
 
-    <section class="gallery-section">
-        <h2>कार्य प्रगति की झलकियाँ | Glimpses of Progress</h2>
-        <div class="gallery">
-            <img src="image.jpg" alt="Progress 1">
-            <img src="image.jpg" alt="Progress 2">
-            <img src="image.jpg" alt="Progress 3">
-            <img src="image.jpg" alt="Progress 4">
-            <img src="image.jpg" alt="Progress 5">
-            <img src="image.jpg" alt="Progress 6">
+    <!-- Black Stone -->
+    <article class="card" role="listitem" aria-label="Black Stone donation card">
+      <img src="https://i.imgur.com/4P0T8xJ.jpg" alt="Black Stone Image" />
+      <div class="card-content">
+        <h3>Black Stone</h3>
+        <p>Donate black stone for temple decoration and flooring.</p>
+        <div class="quantity-controls" aria-label="Adjust quantity for Black Stone">
+          <button aria-label="Decrease quantity" class="minus-btn" disabled>-</button>
+          <span class="qty-value" aria-live="polite" aria-atomic="true">0</span>
+          <button aria-label="Increase quantity" class="plus-btn">+</button>
         </div>
-    </section>
+        <button class="donate-btn" aria-label="Donate Black Stone">Donate</button>
+      </div>
+    </article>
+  </div>
+</section>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>About Us</h3>
-                <p>We are a dedicated team working towards the construction of the Shivling Temple.  Your support is crucial to our mission.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Contact</h3>
-                <ul>
-                    <li>Email: contact@shivlingtemple.org</li>
-                    <li>Phone: +91 9876543210</li>
-                    <li>Address: 123, Temple Street, Ayodhya, India</li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Regional Offices</h3>
-                <ul>
-                    <li>Mumbai</li>
-                    <li>Delhi</li>
-                    <li>Bangalore</li>
-                    <li>Kolkata</li>
-                    <li>Chennai</li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Follow Us</h3>
-                <ul>
-                    <li><a href="#"><i class="fab fa-facebook-square"></i> Facebook</a></li>
-                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
-                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
-                    <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2025 Shivling Temple Project. All rights reserved.</p>
-        </div>
-    </footer>
+<!-- WORK PROGRESS SECTION -->
+<section id="work-progress-section" aria-labelledby="work-progress-heading">
+  <h2 id="work-progress-heading">Work Progress</h2>
+  <div class="progress-group">
+    <label for="progress-shivling">Shivling Installation</label>
+    <progress id="progress-shivling" value="45" max="100">45%</progress>
+  </div>
+  <div class="progress-group">
+    <label for="progress-bricks">Brickwork</label>
+    <progress id="progress-bricks" value="30" max="100">30%</progress>
+  </div>
+  <div class="progress-group">
+    <label for="progress-cement">Cement Application</label>
+    <progress id="progress-cement" value="25" max="100">25%</progress>
+  </div>
+  <div class="progress-group">
+    <label for="progress-stone">Black Stone Laying</label>
+    <progress id="progress-stone" value="10" max="100">10%</progress>
+  </div>
+</section>
 
-    <script>
-        document.getElementById('nav-toggle').addEventListener('click', function () {
-    const menu = document.getElementById('nav-menu');
-    menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
-});
+<!-- ABOUT SECTION -->
+<section id="about-section" aria-labelledby="about-heading">
+  <h2 id="about-heading">About the Mission</h2>
+  <p>
+    Our mission is to build a grand Shivling Mandir containing 1.25 lakh Shivlings across 10 acres of land.
+    This spiritual initiative aims to foster peace, harmony, and devotion among communities. Your donations of materials and support
+    help bring this divine vision to life.
+  </p>
+</section>
+</main>
+<footer id="footer-section" role="contentinfo" tabindex="-1">
+  <p>© 2025 Shivling Mandir Mission. All rights reserved.</p>
+  <p>Contact us: <a href="mailto:contact@shivlingmandir.org" style="color:#eee;">contact@shivlingmandir.org</a></p>
+</footer>
+<button id="floating-donate-btn" aria-label="Donate Now">
+  <i class="fas fa-hand-holding-heart"></i> Donate Now
+</button>
+<script>
+  // NAVIGATION TOGGLE
+  const toggleBtn = document.querySelector(".toggle");
+  const navLinks = document.querySelector(".nav-links");
 
-document.addEventListener('DOMContentLoaded', function() {
-    const cards = document.querySelectorAll('.card');
+  toggleBtn.addEventListener("click", () => {
+    const expanded = toggleBtn.getAttribute("aria-expanded") === "true" || false;
+    toggleBtn.setAttribute("aria-expanded", !expanded);
+    navLinks.classList.toggle("show");
+  });
 
-    cards.forEach(card => {
-        const minusButton = card.querySelector('.minus-btn');
-        const plusButton = card.querySelector('.plus-btn');
-        const quantitySpan = card.querySelector('.quantity-value');
-        const priceElement = card.querySelector('.price');
-        const totalPriceElement = card.querySelector('.total-price');
-        let quantity = 0;
-        let price = parseInt(priceElement.textContent.replace('₹', ''));
+  // Smooth scrolling and active link switching
+  const navItems = navLinks.querySelectorAll("a");
 
-        // Make the price element editable
-        priceElement.contentEditable = "true";
-        priceElement.style.borderBottom = "1px dashed #007bff";
-        priceElement.style.color = "#222";
-
-        priceElement.addEventListener('input', function() {
-            // Update the price when the user edits the price
-            let newPrice = parseInt(this.textContent.replace('₹', ''));
-            if (!isNaN(newPrice)) {
-                price = newPrice;
-                totalPriceElement.textContent = quantity * price;
-            }
-            else{
-                 totalPriceElement.textContent = "Invalid";
-            }
-        });
-
-        minusButton.addEventListener('click', function() {
-            if (quantity > 0) {
-                quantity--;
-                quantitySpan.textContent = quantity;
-                totalPriceElement.textContent = quantity * price;
-            }
-        });
-
-        plusButton.addEventListener('click', function() {
-            quantity++;
-            quantitySpan.textContent = quantity;
-            totalPriceElement.textContent = quantity * price;
-        });
+  navItems.forEach(link => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("show");
+      toggleBtn.setAttribute("aria-expanded", false);
     });
-});
+  });
+
+  // DONATION CARDS FUNCTIONALITY
+  const cards = document.querySelectorAll(".card");
+
+  cards.forEach(card => {
+    const minusBtn = card.querySelector(".minus-btn");
+    const plusBtn = card.querySelector(".plus-btn");
+    const qtyValue = card.querySelector(".qty-value");
+    const donateBtn = card.querySelector(".donate-btn");
+
+    let quantity = 0;
+
+    function updateUI() {
+      qtyValue.textContent = quantity;
+      minusBtn.disabled = quantity === 0;
+      donateBtn.style.display = quantity > 0 ? "inline-block" : "none";
+    }
+
+    minusBtn.addEventListener("click", () => {
+      if (quantity > 0) {
+        quantity--;
+        updateUI();
+      }
+    });
+
+    plusBtn.addEventListener("click", () => {
+      quantity++;
+      updateUI();
+    });
+
+    donateBtn.addEventListener("click", () => {
+      // Prepare query params for donation page
+      const itemName = card.querySelector("h3").textContent;
+      window.location.href = `donation.html?item=${encodeURIComponent(itemName)}&qty=${quantity}`;
+    });
+
+    updateUI();
+  });
+
+  // FLOATING DONATE BUTTON - redirects to donation page (no item/qty)
+  document.getElementById("floating-donate-btn").addEventListener("click", () => {
+    window.location.href = "donation.html";
+  });
 </script>
 </body>
 </html>
